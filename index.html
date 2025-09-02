@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Elixir - One of the Best Coaching Classes in Mira Road</title>
+    <meta name="title" content="Academic Elixir - Best Coaching Classes in Mira Road">
+    <meta name="description" content="Academic Elixir offers coaching classes in Mira Road for degree, junior and senior college, and all boards preparation. We provide the best classes in Mira Road.">
+    <meta name="keywords" content="Best Coaching Classes in Mira Road, ssc classes near me, ssc classes in mira road">
+    <meta name="robots" content="index, follow">
+    <!-- meta name="google-site-verification" content="SBAYz0mPr3wEGI3S_T72jxbirreLfWYnXYpQ5qQHETM" -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* Glassmorphism Effect for Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Intro Section Slideshow */
+        #intro {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+        
+        /* Overlay for better text readability */
+        #intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        
+        .intro-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 1rem;
+            @media (min-width: 768px) {
+                padding: 8rem 1rem;
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            @media (min-width: 768px) {
+                font-size: 2.5rem;
+            }
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            @media (min-width: 768px) {
+                font-size: 1.125rem;
+            }
+            color: #6B7280;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            @media (min-width: 768px) {
+                margin: 0 auto 3rem auto;
+            }
+        }
+
+        /* Card Styles with Glass effect */
+        .glass-card {
+             background: rgba(255, 255, 255, 0.4);
+             backdrop-filter: blur(15px);
+             -webkit-backdrop-filter: blur(15px);
+             border-radius: 1rem;
+             border: 1px solid rgba(255, 255, 255, 0.2);
+             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Teacher Quote Style */
+        .teacher-quote {
+            font-style: italic;
+            color: #4B5563;
+            border-left: 3px solid #3B82F6;
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+        
+        /* Gallery Image Style */
+        .gallery-img {
+            transition: transform 0.3s ease, filter 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Mobile menu specific styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -16rem; /* Hidden state */
+            width: 16rem;
+            height: 100%;
+            background-color: #1a202c;
+            opacity: 0;
+            visibility: hidden;
+            transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            z-index: 40;
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 39;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#intro" class="text-white text-2xl font-bold">Academic Elixir</a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#intro" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Home"><i class="fas fa-home"></i></a>
+                        <a href="#about" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="About Us"><i class="fas fa-info-circle"></i></a>
+                        <a href="#extracurricular" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Extra Curricular"><i class="fas fa-futbol"></i></a>
+                        <a href="#why-us" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Why Choose Us"><i class="fas fa-question-circle"></i></a>
+                        <a href="#courses" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Courses"><i class="fas fa-book-open"></i></a>
+                        <a href="#teachers" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Teachers"><i class="fas fa-chalkboard-teacher"></i></a>
+                        <a href="#alumni" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Alumni"><i class="fas fa-user-graduate"></i></a>
+                        <a href="#gallery" class="text-gray-200 hover:text-white px-3 py-2 rounded-md text-lg" title="Gallery"><i class="fas fa-images"></i></a>
+                    </div>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-200 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menu-overlay" class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="flex justify-end p-5">
+            <button id="close-mobile-menu" class="text-white text-2xl p-2 rounded-full hover:bg-gray-700">&times;</button>
+        </div>
+        <div class="flex flex-col items-start space-y-4 pt-4 px-5">
+            <a href="#intro" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Home">Home</a>
+            <a href="#about" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="About Us">About Us</a>
+            <a href="#extracurricular" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Extra Curricular">Extra Curricular</a>
+            <a href="#why-us" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Why Choose Us">Why Choose Us</a>
+            <a href="#courses" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Courses">Courses</a>
+            <a href="#teachers" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Teachers">Teachers</a>
+            <a href="#alumni" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Alumni">Alumni</a>
+            <a href="#gallery" class="block text-white text-lg font-medium px-3 py-2 rounded-md hover:bg-gray-700 w-full text-left" title="Gallery">Gallery</a>
+        </div>
+    </div>
+
+
+    <!-- 1. Intro Section -->
+    <section id="intro">
+        <div class="slide active" style="background-image: url('images/intro/first.webp');"></div>
+        <div class="slide" style="background-image: url('images/intro/second.webp');"></div>
+        <div class="slide" style="background-image: url('images/intro/third.webp');"></div>
+        <div class="intro-content px-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 animate-fade-in-down">Academic Elixir</h1>
+            <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">Where Understanding Leads to Mastery</p>
+            <a href="#about" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">Discover More</a>
+        </div>
+    </section>
+
+    <!-- 2. About Us Section -->
+    <section id="about" class="section bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-gray-900">About Our Institute</h2>
+            <p class="section-subtitle">Pioneering education with a commitment to excellence, innovation, and holistic development since 2005.</p>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="rounded-lg overflow-hidden shadow-2xl">
+                    <img src="images/showcase/tahir.webp" alt="Our Mission" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Learning isn't limited to just books</h3>
+                    <p class="text-gray-600 mb-4">When it comes to creating our elixirian’s future, we make sure that they become the best in their respective field.</p>
+                    <p class="text-gray-600">We understand that you cannot create industry legends by just bombarding them with knowledge in a classroom.</p>
+                    <p class="text-gray-600">Therefore we put in the extra effort and take the learning beyond our classrooms. That is where their actual personality developes.</p>
+                    <!-- New features list -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600 my-8 pb-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>Communication Skills
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>Personality Development
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>Affordable Fee Structure
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-blue-600 mr-2"></i>Best Faculties
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://forms.gle/Tp8hyGiuWW7m1H9J8" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-base transition duration-300 text-center">Contact Us</a>
+                        <a href="tel:+919833940962" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-full text-base transition duration-300 text-center">Make an Enquiry</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Extra Curricular Section -->
+    <section id="extracurricular" class="section bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-gray-900">Our relationship with students go beyond our classrooms!</h2>
+            <p class="section-subtitle">We believe in holistic development. Explore our vibrant range of extra-curricular activities designed to build skills, character, and friendships.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-8 text-center bg-blue-100">
+                    <i class="fas fa-futbol text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Sports Day</h3>
+                    <p class="text-gray-600">From soccer to swimming, we offer state-of-the-art facilities and coaching.</p>
+                </div>
+                 <div class="glass-card p-8 text-center bg-green-100">
+                    <i class="fas fa-gift text-4xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Farewell</h3>
+                    <p class="text-gray-600">To remember and embrace all the memories we created together.</p>
+                </div>
+                 <div class="glass-card p-8 text-center bg-yellow-100">
+                    <i class="fas fa-users text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Annual Day</h3>
+                    <p class="text-gray-600">A chance to bond with our students beyond classrooms.</p>
+                </div>
+                 <div class="glass-card p-8 text-center bg-red-100">
+                    <i class="fas fa-user-tie text-4xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Personality Development</h3>
+                    <p class="text-gray-600">Some extra curricular activities for their overall personal development.</p>
+                </div>
+                <div class="glass-card p-8 text-center bg-blue-100">
+                    <i class="fas fa-book text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Comprehensive Notes</h3>
+                    <p class="text-gray-600">Our syllabus and study materials help Elixirians become industry experts.</p>
+                </div>
+                 <div class="glass-card p-8 text-center bg-green-100">
+                    <i class="fas fa-chalkboard-user text-4xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Experienced Faculty</h3>
+                    <p class="text-gray-600">We understand our students better than themselves.</p>
+                </div>
+                 <div class="glass-card p-8 text-center bg-yellow-100">
+                    <i class="fas fa-square-poll-horizontal text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Regular Test</h3>
+                    <p class="text-gray-600">We give our students a reality check every now and then to turn them into better competitors.</p>
+                </div>
+                 <div class="glass-card p-8 text-center bg-red-100">
+                    <i class="fas fa-person-chalkboard text-4xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Special Attention</h3>
+                    <p class="text-gray-600">We see our student's weakspots and make them improve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Why Choose Us Section -->
+    <section id="why-us" class="section bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <h2 class="section-title text-gray-900">Why Academic Elixir?</h2>
+             <p class="section-subtitle">Discover the key advantages that make our institute the ideal choice for your academic journey.</p>
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                 <div class="p-6">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-blue-600 mx-auto mb-4">
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                     <h3 class="text-xl font-bold mb-2">1000+ Students Annually</h3>
+                     <p class="text-gray-600">Join a vibrant and growing community of learners.</p>
+                 </div>
+                 <div class="p-6">
+                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mx-auto mb-4">
+                        <i class="fas fa-comments text-3xl"></i>
+                    </div>
+                     <h3 class="text-xl font-bold mb-2">1-on-1 Doubt Solving</h3>
+                     <p class="text-gray-600">Personalized attention to ensure concepts are crystal clear.</p>
+                 </div>
+                 <div class="p-6">
+                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 text-yellow-600 mx-auto mb-4">
+                        <i class="fas fa-chalkboard-teacher text-3xl"></i>
+                    </div>
+                     <h3 class="text-xl font-bold mb-2">1000+ Lectures Conducted</h3>
+                     <p class="text-gray-600">Benefit from a vast repository of knowledge and expertise.</p>
+                 </div>
+                 <div class="p-6">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-600 mx-auto mb-4">
+                       <i class="fas fa-trophy text-3xl"></i>
+                   </div>
+                    <h3 class="text-xl font-bold mb-2">98% Success Rate</h3>
+                    <p class="text-gray-600">A proven track record of helping students achieve their goals.</p>
+                </div>
+             </div>
+        </div>
+    </section>
+    
+    <!-- 5. Courses Section -->
+    <section id="courses" class="section bg-gray-50" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.webp');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-gray-900">Our Courses</h2>
+            <p class="section-subtitle">Explore our diverse range of programs designed to equip you with the skills for a successful future.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Course Card 1 -->
+                <div class="glass-card overflow-hidden bg-white/50">
+                    <img src="images/courses/cbse-icse.webp" class="w-full h-48 object-cover" alt="CBSE-ICSE Course">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">School Section</h3>
+                        <p class="text-gray-700">VII, IX, X (All Boards)</p>
+                    </div>
+                </div>
+                <!-- Course Card 2 -->
+                <div class="glass-card overflow-hidden bg-white/50">
+                    <img src="images/courses/mhsbse.webp" class="w-full h-48 object-cover" alt="MHSBSE Course">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">College Section</h3>
+                        <p class="text-gray-700">FYJC (Science/Commerce) <br>SYJC (Science/Commerce)</p>
+                    </div>
+                </div>
+                <!-- Course Card 3 -->
+                <div class="glass-card overflow-hidden bg-white/50">
+                    <img src="images/courses/entrance.webp" class="w-full h-48 object-cover" alt="Entrance Course">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Degree Section</h3>
+                        <p class="text-gray-700">Science/Commerce</p>
+                    </div>
+                </div>
+                <!-- Course Card 4 -->
+                <div class="glass-card overflow-hidden bg-white/50">
+                    <img src="images/courses/degree.webp" class="w-full h-48 object-cover" alt="Degree Course">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Entrance Exam</h3>
+                        <p class="text-gray-700">MHT-CET (Engg./Medical)<br>JEE MAINS NEET</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Teachers Section -->
+    <section id="teachers" class="section bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-gray-900">Meet Our Founders</h2>
+            <p class="section-subtitle">Our faculty are more than teachers; they are mentors dedicated to inspiring and guiding our students.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Teacher 1 -->
+                <div class="text-center">
+                    <img src="images/star/S.webp" alt="Teacher" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover">
+                    <h3 class="text-xl font-bold">Mr Sadat Khan</h3>
+                    <p class="text-gray-500 mb-2">Co-Founder | M.Sc and B.Ed</p>
+                    <p class="teacher-quote">"Teaches Chemistry while maintaining the balance in the chemistry of life."</p>
+                </div>
+                <!-- Teacher 2 -->
+                <div class="text-center">
+                    <img src="images/star/T.webp" alt="Teacher" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover">
+                    <h3 class="text-xl font-bold">Mr. Tahir Mohiuddin</h3>
+                    <p class="text-gray-500 mb-2"> Co-Founder | Double M.Sc in Physics and B.Ed</p>
+                    <p class="teacher-quote">"Teaches Physics, Making you see the world in a new light."</p>
+                </div>
+                 <!-- Teacher 3 -->
+                <div class="text-center">
+                    <img src="images/star/A.webp" alt="Teacher" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover">
+                    <h3 class="text-xl font-bold">Mr. Ajay Vishwakarma</h3>
+                    <p class="text-gray-500 mb-2">Co-Founder | Double M.Sc</p>
+                    <p class="teacher-quote">"Teaches mathematics, making Pi (π) as sweet as chocolate."</p>
+                </div>
+                 <!-- Teacher 4 -->
+                <div class="text-center">
+                    <img src="images/star/R.webp" alt="Teacher" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover">
+                    <h3 class="text-xl font-bold">Mr. Rakesh Yadav</h3>
+                    <p class="text-gray-500 mb-2">Co-Founder | M.Sc and B.Ed</p>
+                    <p class="teacher-quote">"Simplifies space calculations through teaching Physics."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Alumni Section -->
+    <section id="alumni" class="section bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-gray-900">Our Proud Alumni</h2>
+            <p class="section-subtitle">Celebrating the success of our graduates who are making a mark in various fields across the globe.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Alumni 1 -->
+                <div class="group glass-card overflow-hidden bg-white/60 p-4 text-center">
+                    <img src="images/alumni/fiza.webp" alt="Alumni Alex Johnson" class="w-full h-full object-cover rounded-lg mb-4 shadow-md">
+                </div>
+                <!-- Alumni 2 -->
+                <div class="group glass-card overflow-hidden bg-white/60 p-4 text-center">
+                    <img src="images/alumni/maasir.webp" alt="Alumni Chloe Davis" class="w-full h-full object-cover rounded-lg mb-4 shadow-md">
+                </div>
+                <!-- Alumni 3 -->
+                <div class="group glass-card overflow-hidden bg-white/60 p-4 text-center">
+                    <img src="images/alumni/suhaib.webp" alt="Alumni David Evans" class="w-full h-full object-cover rounded-lg mb-4 shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Gallery Section -->
+    <section id="gallery" class="section bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-gray-900">Our Elixir Family in Pictures</h2>
+            <p class="section-subtitle">A glimpse into the vibrant and enriching life at Academic Elixir.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                <div class="grid gap-4 sm:gap-6 lg:gap-8">
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/tree.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/st.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/girls.webp" alt=""></div>
+                </div>
+                <div class="grid gap-4 sm:gap-6 lg:gap-8">
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/girls_team.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/ssc_students.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/girl-speak.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/waterpark.webp" alt=""></div>
+                </div>
+                 <div class="grid gap-4 sm:gap-6 lg:gap-8">
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/ssc_students.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/salman_sir.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/t_students.webp" alt=""></div>
+                </div>
+                 <div class="grid gap-4 sm:gap-6 lg:gap-8">
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/aepl-team.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/star.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/7.webp" alt=""></div>
+                    <div><img class="h-auto max-w-full rounded-lg gallery-img" src="images/showcase/team-fixed.webp" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- The Modal/Lightbox -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white" id="contact">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-2xl font-bold mb-2">Academic Elixir</p>
+            <p class="mb-4">&copy; 2024 Academic Elixir. All Rights Reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intro Section Slideshow
+        const slides = document.querySelectorAll('#intro .slide');
+        let currentSlide = 0;
+        const slideInterval = 5000; // 5 seconds
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, slideInterval);
+
+        // Navbar style change on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.style.background = 'rgba(25, 35, 59, 0.7)'; // Darker background on scroll
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.style.background = 'rgba(255, 255, 255, 0.1)'; // Initial transparent background
+            }
+        });
+        
+        // Modal for image gallery
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.close-btn');
+        const galleryImages = document.querySelectorAll('.gallery-img');
+
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalImage.src = image.src;
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMenu);
+        closeMobileMenu.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu(); // Close menu after clicking a link
+            });
+        });
+    </script>
+
+</body>
+</html>
